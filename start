@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -14,4 +14,4 @@
 # ========================×========================
 
 
-python3 -m pyAyiin
+python3 -m pyHyper
