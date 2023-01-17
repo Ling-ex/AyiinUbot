@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -17,15 +17,15 @@ import logging
 
 from config import *
 from git import Repo
-from pyAyiin import PyrogramXd
-from pyAyiin.Clients import *
-from pyAyiin.config import Var
-from pyAyiin.pyrogram import eod, eor
+from pyHyper import PyrogramEx
+from pyHyper.Clients import *
+from pyHyper.config import Var
+from pyHyper.pyrogram import eod, eor
 
 
 repo = Repo()
 branch = repo.active_branch
-yins = PyrogramXd()
+ling = PyrogramEx()
 var = Var()
 hndlr = [
     f"{var.HNDLR[0]}",
