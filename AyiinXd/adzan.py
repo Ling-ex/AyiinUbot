@@ -4,14 +4,14 @@ import requests
 from pyrogram import Client
 from pyrogram.types import Message
 
-from pyAyiin import Ayiin, CMD_HELP
+from pyHyper import Hyper, CMD_HELP
 
 from . import *
 
 
-@Ayiin(["adzan"], pass_error=True)
+@Hyper(["adzan"], pass_error=True)
 async def adzan_shalat(client: Client, message: Message):
-    LOKASI = yins.get_cmd(message)
+    LOKASI = ling.get_cmd(message)
     if not LOKASI:
         await message.reply("<i>Silahkan Masukkan Nama Kota Anda</i>")
         return True
