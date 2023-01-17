@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -16,8 +16,8 @@
 from fipper import Client
 from fipper.types import Message
 
-from pyAyiin import Ayiin, CMD_HELP
-from pyAyiin.pyrogram import eor
+from pyHyper import Hyper, CMD_HELP
+from pyHyper.pyrogram import eor
 
 from . import *
 
@@ -64,50 +64,50 @@ def gen_font(text, new_font):
     return text
 
 
-@Ayiin(["font"])
-async def font_yins(client: Client, message: Message):
-    if message.reply_to_message or yins.get_cmd(message):
-        font = yins.get_cmd(message)
+@Hyper(["font"])
+async def font_ling(client: Client, message: Message):
+    if message.reply_to_message or ling.get_cmd(message):
+        font = ling.get_cmd(message)
         text = message.reply_to_message.text
         if not font:
             return await eor(message, f"<code>{font} Tidak Ada Dalam Daftar Font Kentod...</code>")
         if font == "smallcap":
-            yinsxd = gen_font(text, _smallcap)
+            lingex = gen_font(text, _smallcap)
         elif font == "monospace":
-            yinsxd = gen_font(text, _monospace)
+            lingex = gen_font(text, _monospace)
         elif font == "outline":
-            yinsxd = gen_font(text, _outline)
+            lingex = gen_font(text, _outline)
         elif font == "script":
-            yinsxd = gen_font(text, _script)
+            lingex = gen_font(text, _script)
         elif font == "blackbubbles":
-            yinsxd = gen_font(text, _blackbubbles)
+            lingex = gen_font(text, _blackbubbles)
         elif font == "bubbles":
-            yinsxd = gen_font(text, _bubbles)
+            lingex = gen_font(text, _bubbles)
         elif font == "bold":
-            yinsxd = gen_font(text, _bold)
+            lingex = gen_font(text, _bold)
         elif font == "bolditalic":
-            yinsxd = gen_font(text, _bolditalic)
+            lingex = gen_font(text, _bolditalic)
         await eor(message, yinsxd)
 
     else:
         return await message.reply("Balas Teks Dan Isi Nama Font Yang Bener Bego!!!")
 
 
-@Ayiin(["lf", "listfont"])
+@Hyper(["lf", "listfont"])
 async def fonts(client: Client, msg: Message):
     await eor(
         msg,
         "<b>❯❯ ᴅᴀғᴛᴀʀ ғᴏɴᴛs ❮❮</b>\n"
         "<b>         ☟︎︎︎☟☟︎︎︎☟︎︎︎☟︎︎</b>\n\n\n"
-        "<b>• smallcap » ᴀʏɪɪɴ</b>\n"
-        "<b>• monospace » 𝙰𝚈𝙸𝙸𝙽</b>\n"
-        "<b>• outline » 𝔸𝕐𝕀𝕀ℕ</b>\n"
-        "<b>• script » 𝒜𝒴ℐℐ𝒩</b>\n"
-        "<b>• blackbubbles » 🅐︎🅨︎🅘︎🅘︎🅝︎</b>\n"
-        "<b>• bubbles » Ⓐ︎Ⓨ︎Ⓘ︎Ⓘ︎Ⓝ︎</b>\n"
-        "<b>• bold » 𝗔𝗬𝗜𝗜𝗡</b>\n"
-        "<b>• bolditalic » 𝘼𝙔𝙄𝙄𝙉</b>\n\n"
-        "<b>   ✧ 𝙰𝚈𝙸𝙸𝙽-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 ✧</b>"
+        "<b>• smallcap » ʜʏᴘᴇʀ</b>\n"
+        "<b>• monospace » 𝙷𝚈𝙿𝙴𝚁</b>\n"
+        "<b>• outline » ℍ𝕐ℙ𝔼ℝ</b>\n"
+        "<b>• script » 𝓗𝓨𝓟𝓔𝓡</b>\n"
+        "<b>• blackbubbles » 🅷🆈🅿🅴🆁</b>\n"
+        "<b>• bubbles » ⒽⓎⓅⒺⓇ</b>\n"
+        "<b>• bold » 𝗛𝗬𝗣𝗘𝗥</b>\n"
+        "<b>• bolditalic » 𝙃𝙔𝙋𝙀𝙍</b>\n\n"
+        "<b>   ✧ 𝙷𝚈𝙿𝙴𝚁-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 ✧</b>"
     )
 
 
