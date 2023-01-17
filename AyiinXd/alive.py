@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -20,16 +20,16 @@ from fipper.errors import PeerIdInvalid
 from fipper.types import Message
 from platform import python_version
 
-from pyAyiin import __version__, ayiin_ver
+from pyHyper import __version__, ling_ver
 from pyAyiin import CMD_HELP, HOSTED_ON, adB, tgbot
-from pyAyiin.decorator import Ayiin
-from pyAyiin.pyrogram import eor
+from pyHyper.decorator import Hyper
+from pyHyper.pyrogram import eor
 
 
 from . import *
 
 
-@Ayiin(["alive", "yins"])
+@Hyper(["alive", "ling"])
 async def aliveme(client: Client, message: Message):
     if tgbot:
         try:
@@ -38,7 +38,7 @@ async def aliveme(client: Client, message: Message):
             await message.reply_inline_bot_result(
                 results.query_id,
                 results.results[0].id,
-                reply_to_message_id=yins.ReplyCheck(message),
+                reply_to_message_id=ling.ReplyCheck(message),
             )
         except PeerIdInvalid:
             succ = await client.send_message(tgbot.me.username, "/start")
@@ -47,7 +47,7 @@ async def aliveme(client: Client, message: Message):
                 await message.reply_inline_bot_result(
                     results.query_id,
                     results.results[0].id,
-                    reply_to_message_id=yins.ReplyCheck(message),
+                    reply_to_message_id=ling.ReplyCheck(message),
                 )
             else:
                 await eor(message, f"Silahkan mulai <a href='https://t.me/{tgbot.me.username}?start=True'>{tgbot.me.first_name}</a> dan ketik .help lagi")
@@ -57,7 +57,7 @@ async def aliveme(client: Client, message: Message):
         chat_id = message.chat.id
         user = await client.get_me()
         output = (
-            f"**Tʜᴇ [Ayiin Ubot](https://github.com/AyiinXd/AyiinUbot)**\n\n"
+            f"**Tʜᴇ [Hyper Ubot](https://github.com)**\n\n"
             f"**{var.ALIVE_TEXT}**\n\n"
             f"╭✠╼━━━━━━━━━━━━━━━✠╮\n"
             f"≽ **Bᴀsᴇ Oɴ :** •[{adB.name}]•\n"
@@ -66,7 +66,7 @@ async def aliveme(client: Client, message: Message):
             f"≽ **Pʏᴛʜᴏɴ Vᴇʀsɪᴏɴ :** `{python_version()}`\n"
             f"≽ **Pʏʀᴏɢʀᴀᴍ Vᴇʀsɪᴏɴ :** `{fip_ver}`\n"
             f"≽ **Pʏ-Aʏɪɪɴ Vᴇʀsɪᴏɴ :** `{__version__}`\n"
-            f"≽ **Aʏɪɪɴ Vᴇʀsɪᴏɴ :** `{ayiin_ver}` [{HOSTED_ON}]\n"
+            f"≽ **Aʏɪɪɴ Vᴇʀsɪᴏɴ :** `{ling_ver}` [{HOSTED_ON}]\n"
             "╰✠╼━━━━━━━━━━━━━━━✠╯\n\n"
         )
         await message.delete()
@@ -79,8 +79,8 @@ async def aliveme(client: Client, message: Message):
                     await client.send_photo(chat_id=chat_id, photo=var.ALIVE_PIC, caption=output)
             else:
                 await message.reply_text(output)
-        except BaseException as xd:
-            await message.reply(xd)
+        except BaseException as ex:
+            await message.reply(ex)
 
 
 CMD_HELP.update(
