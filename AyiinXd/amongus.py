@@ -9,12 +9,12 @@ from requests import get
 from fipper import Client
 from fipper.types import Message
 
-from pyAyiin import Ayiin, CMD_HELP
+from pyHyper import Hyper, CMD_HELP
 
 from . import *
 
 
-@Ayiin(["imp", "impostor"])
+@Hyper(["imp", "impostor"])
 async def f_load(client: Client, message: Message):
     clrs = {
         "red": 1,
@@ -31,7 +31,7 @@ async def f_load(client: Client, message: Message):
         "black": 12,
     }
     clr = randint(1, 12)
-    text = yins.get_cmd(message)
+    text = ling.get_cmd(message)
     reply = message.reply_to_message
     if text in clrs:
         clr = clrs[text]
@@ -76,7 +76,7 @@ async def f_load(client: Client, message: Message):
     await message.delete()
     await message.reply_sticker(
         sticker=output,
-        reply_to_message_id=yins.ReplyCheck(message),
+        reply_to_message_id=ling.ReplyCheck(message),
     )
 
 
