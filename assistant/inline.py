@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -22,8 +22,8 @@ from fipper.types import *
 
 from config import *
 
-from pyAyiin import CMD_HELP, StartTime
-from pyAyiin.assistant import inline
+from pyHyper import CMD_HELP, StartTime
+from pyHyper.assistant import inline
 
 from . import *
 
@@ -55,9 +55,9 @@ async def inline_result(_, inline_query):
     rslts=[
         (
             InlineQueryResultArticle(
-                title="Ayiin Ubot!",
+                title="Hyper Ubot!",
                 reply_markup=InlineKeyboardMarkup(
-                    yins.HelpXd(0, CMD_HELP, "xd")
+                    ling.HelpEX(0, CMD_HELP, "ex")
                 ),
                 input_message_content=InputTextMessageContent(help_string()),
             )
@@ -76,7 +76,7 @@ async def inline_result(_, iq):
     rslts=[
         (
             InlineQueryResultArticle(
-                title="Paste Ayiin Ubot!",
+                title="Paste Hyper Ubot!",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -103,7 +103,7 @@ async def inline_result(_, iq):
 
 @inline(pattern="alive", client_only=True)
 async def inline_result(_: Client, iq):
-    alive = await yins.alive('plugins-tab')
+    alive = await ling.alive('plugins-tab')
     await iq.answer(
         alive,
         cache_time=0
@@ -114,19 +114,19 @@ async def inline_result(_: Client, iq):
 @inline(pattern="ping", client_only=True)
 async def inline_result(_: Client, iq):
     start = datetime.now()
-    uptime = await yins.get_readable_time((time.time() - StartTime))
+    uptime = await ling.get_readable_time((time.time() - StartTime))
     time.sleep(2)
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     out_ping = (
-        f"<b>✧ Aʏɪɪɴ Uʙᴏᴛ ✧</b>\n\n"
+        f"<b>✧ ʜʏᴘᴇʀ ✧</b>\n\n"
         f"<b>✧ Pɪɴɢᴇʀ :</b> <code>{duration}ms</code>\n"
         f"<b>✧ Uᴘᴛɪᴍᴇ :</b> <code>{uptime}</code>"
     )
     ping_result = [
         (
             InlineQueryResultArticle(
-                title="Ping Ayiin Ubot!",
+                title="Ping Hyper Ubot!",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -155,7 +155,7 @@ async def inline_update(client, iq):
     update_results = [
         (
             InlineQueryResultArticle(
-                title='Update Ayiin Ubot!',
+                title='Update Hyper Ubot!',
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -190,7 +190,7 @@ async def inline_update(client, iq):
 async def inline_pmpermit(_, iq):
     query = iq.query
     ids = query.split("_")[1]
-    xnxx = await yins.inline_pmpermit(ids)
+    xnxx = await ling.inline_pmpermit(ids)
     await iq.answer(
         xnxx,
         cache_time=0,
