@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -19,9 +19,9 @@ from fipper.types import (
     InlineKeyboardMarkup,
 )
 
-from pyAyiin import __version__
-from pyAyiin import tgbot
-from pyAyiin.assistant import callback
+from pyHyper import __version__
+from pyHyper import tgbot
+from pyHyper.assistant import callback
 
 
 START = """
@@ -32,7 +32,7 @@ START = """
 ├▹ Dan Memiliki Modul Yg Bisa Anda Gunakan
 ├▹ Bisa Membuat Ubot Sampai Dengan 10 String 
 ╰╼┅━━━━━╍━━━━━┅━━━━━━━┅╾
-❏ © py-Ayiin v{}
+❏ © py-Hyper v{}
 """
 
 
@@ -44,12 +44,12 @@ async def start(bot, msg):
     buttons = [
         [
             InlineKeyboardButton(
-                "☞︎︎︎ Cʀᴇᴀᴛᴇ Uʙᴏᴛ ☜︎︎︎", callback_data="multi_client")
+                "☞︎︎︎ Buat Ubot ☜︎︎︎", callback_data="multi_client")
         ],
         [
             InlineKeyboardButton(
-                "ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅ", callback_data="help_or_command"), InlineKeyboardButton(
-                "ᴀʙᴏᴜᴛ", callback_data="about")
+                "📚 Bantuan", callback_data="help_or_command"), InlineKeyboardButton(
+                "📝 Tentang", callback_data="about")
         ],
     ]
     await bot.send_message(
