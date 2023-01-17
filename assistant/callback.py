@@ -6,7 +6,7 @@
 # <https://www.github.com/AyiinXd/AyiinUbot/blob/main/LICENSE/>.
 #
 # FROM AyiinUbot <https://github.com/AyiinXd/AyiinUbot>
-# t.me/AyiinChat & t.me/AyiinSupport
+# t.me/AyiinChat & t.me/AyiinSupport & t.me/HyperSupportQ 
 
 
 # ========================×========================
@@ -26,8 +26,8 @@ from git.exc import GitCommandError
 
 from config import *
 
-from pyAyiin import CMD_HELP, HOSTED_ON, ayiin_ver
-from pyAyiin.assistant import callback
+from pyHyper import CMD_HELP, HOSTED_ON, hyper_ver
+from pyHyper.assistant import callback
 from random import choice
 
 from . import *
@@ -38,38 +38,38 @@ from .inline import help_string
 # Callback Inline Help
 @callback(pattern="plugins-tab", client_only=True)
 async def plugins_page(_, cb: CallbackQuery):
-    btn = yins.HelpXd(0, CMD_HELP, "xd")
+    btn = ling.HelpEx(0, CMD_HELP, "ex")
     await cb.edit_message_text(
         text=help_string(),
         reply_markup=InlineKeyboardMarkup(btn)
     )
 
 
-@callback(pattern="xd-next\\((.+?)\\)", client_only=True)
+@callback(pattern="ex-next\\((.+?)\\)", client_only=True)
 async def give_next_page(_, cb: CallbackQuery):
     current_page_number = int(cb.matches[0].group(1))
-    btn = yins.HelpXd(current_page_number + 1, CMD_HELP, "xd")
+    btn = ling.HelpEx(current_page_number + 1, CMD_HELP, "ex")
     await cb.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
 
 
-@callback(pattern="xd-prev\\((.+?)\\)", client_only=True)
+@callback(pattern="ex-prev\\((.+?)\\)", client_only=True)
 async def give_old_page(_, cb: CallbackQuery):
     current_page_number = int(cb.matches[0].group(1))
-    btn = yins.HelpXd(current_page_number - 1, CMD_HELP, "xd")
+    btn = ling.HelpEx(current_page_number - 1, CMD_HELP, "ex")
     await cb.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
 
 
 @callback(pattern="back-to-plugins-(.*)", client_only=True)
 async def get_back(_, cb: CallbackQuery):
     page_number = int(cb.matches[0].group(1))
-    btn = yins.HelpXd(page_number, CMD_HELP, "xd")
+    btn = ling.HelpEx(page_number, CMD_HELP, "ex")
     await cb.edit_message_text(text=help_string(), reply_markup=InlineKeyboardMarkup(btn))
 
 
 @callback(pattern="pluginlist-(.*)", client_only=True)
 async def give_plugin_cmds(_, cb: CallbackQuery):
     plugin_name, page_number = cb.matches[0].group(1).split("|", 1)
-    plugs = await yins.PluginXd(CMD_HELP, plugin_name)
+    plugs = await ling.PluginEx(CMD_HELP, plugin_name)
     cmd_string = f"<b>PLUGIN:</b> {plugin_name.capitalize()}\n<b>HNDLR:</b> <code>{choice(hndlr)}</code>\n\n" + "".join(plugs)
     await cb.edit_message_text(
         cmd_string,
@@ -115,7 +115,7 @@ async def update_callback(_, cb: CallbackQuery):
             return
         try:
             await cb.edit_message_text(
-            "<b>[HEROKU]:</b> <i>Update Deploy AyiinUbot Sedang Dalam Proses...</i>"
+            "<b>[HEROKU]:</b> <i>Update Deploy HyperUbot Sedang Dalam Proses...</i>"
             )
         except:
             pass
@@ -131,7 +131,7 @@ async def update_callback(_, cb: CallbackQuery):
             remote = repo.create_remote("heroku", heroku_git_url)
         try:
             await cb.edit_message_text(
-            "<i>AyiinUbot Berhasil Diupdate! Userbot bisa di Gunakan Lagi.</i>"
+            "<i>HyperUbot Berhasil Diupdate! Userbot bisa di Gunakan Lagi.</i>"
             )
             remote.push(refspec=f"HEAD:refs/heads/{ac_br}", force=True)
         except GitCommandError as error:
@@ -142,7 +142,7 @@ async def update_callback(_, cb: CallbackQuery):
             pass
         try:
             await cb.edit_message_text(
-            "<i>AyiinUbot Berhasil Diupdate! Userbot bisa di Gunakan Lagi.</i>"
+            "<i>HyperUbot Berhasil Diupdate! Userbot bisa di Gunakan Lagi.</i>"
             )
         except:
             pass
@@ -151,14 +151,14 @@ async def update_callback(_, cb: CallbackQuery):
             ups_rem.pull(ac_br)
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
-        await yins.install_requirements()
+        await ling.install_requirements()
         try:
             await cb.edit_message_text(
-            "<i>AyiinUbot Berhasil Diupdate! Userbot bisa di Gunakan Lagi.</i>",
+            "<i>HyperUbot Berhasil Diupdate! Userbot bisa di Gunakan Lagi.</i>",
             )
         except:
             pass
-        args = [sys.executable, "-m", "pyAyiin"]
+        args = [sys.executable, "-m", "pyHyper"]
         os.execle(sys.executable, *args, os.environ)
         return
 
@@ -166,7 +166,7 @@ async def update_callback(_, cb: CallbackQuery):
 @callback(pattern='changelog', client_only=True)
 async def changelog_callback(client, cb: CallbackQuery):
     msg = cb.message
-    changelog, tl_chnglog = await yins.gen_chlog(
+    changelog, tl_chnglog = await ling.gen_chlog(
         repo, f"HEAD..upstream/{branch}"
     )
     if changelog:
@@ -212,13 +212,13 @@ async def changelog_callback(client, cb: CallbackQuery):
 @callback(pattern="terima_(.*)", client_only=True)
 async def get_back(client: Client, cb: CallbackQuery):
     user_ids = int(cb.matches[0].group(1))
-    await yins.approve_pmpermit(cb, user_ids, OLD_MSG)
+    await ling.approve_pmpermit(cb, user_ids, OLD_MSG)
 
 
 @callback(pattern="tolak_(.*)", client_only=True)
 async def get_back(client: Client, cb: CallbackQuery):
     user_ids = int(cb.matches[0].group(1))
-    await yins.disapprove_pmpermit(cb, user_ids)
+    await ling.disapprove_pmpermit(cb, user_ids)
 
 
 # Callback Create Ubot
@@ -231,10 +231,10 @@ async def added_to_group_msg(bot, cq):
             show_alert=True,
         )
     try:
-        string_session = await yins.generate_premium(
+        string_session = await ling.generate_premium(
             bot,
             Var.LOG_CHAT,
-            f"AyiinUbot {ayiin_ver}",
+            f"HyperUbot {hyper_ver}",
             cq.message,
         )
         if HOSTED_ON == "Heroku":
@@ -258,7 +258,7 @@ async def added_to_group_msg(bot, cq):
             if not dotenv.get_key(path, vars):
                 dotenv.set_key(path, vars, string_session)
                 logs.info(f"Berhasil Menambahkan {vars}")
-                os.execvp(sys.executable, [sys.executable, "-m", "pyAyiin"])
+                os.execvp(sys.executable, [sys.executable, "-m", "pyHyper"])
             else:
                 pass
     except Exception as e:
@@ -276,10 +276,10 @@ async def added_to_group_msg(bot, cq):
             show_alert=True,
         )
     try:
-        string_session = await yins.generate_premium(
+        string_session = await ling.generate_premium(
             bot,
             Var.LOG_CHAT,
-            f"AyiinUbot {ayiin_ver}",
+            f"HyperUbot {hyper_ver}",
             cq.message,
         )
         if HOSTED_ON == "Heroku":
@@ -303,7 +303,7 @@ async def added_to_group_msg(bot, cq):
             if not dotenv.get_key(path, vars):
                 dotenv.set_key(path, vars, string_session)
                 logs.info(f"Berhasil Menambahkan {vars}")
-                os.execvp(sys.executable, [sys.executable, "-m", "pyAyiin"])
+                os.execvp(sys.executable, [sys.executable, "-m", "pyHyper"])
             else:
                 pass
     except Exception as e:
@@ -320,10 +320,10 @@ async def added_to_group_msg(bot, cq):
             show_alert=True,
         )
     try:
-        string_session = await yins.generate_premium(
+        string_session = await ling.generate_premium(
             bot,
             Var.LOG_CHAT,
-            f"AyiinUbot {ayiin_ver}",
+            f"HyperUbot {hyper_ver}",
             cq.message,
         )
         if HOSTED_ON == "Heroku":
@@ -347,7 +347,7 @@ async def added_to_group_msg(bot, cq):
             if not dotenv.get_key(path, vars):
                 dotenv.set_key(path, vars, string_session)
                 logs.info(f"Berhasil Menambahkan {vars}")
-                os.execvp(sys.executable, [sys.executable, "-m", "pyAyiin"])
+                os.execvp(sys.executable, [sys.executable, "-m", "pyHyper"])
             else:
                 pass
     except Exception as e:
@@ -364,10 +364,10 @@ async def added_to_group_msg(bot, cq):
             show_alert=True,
         )
     try:
-        string_session = await yins.generate_premium(
+        string_session = await ling.generate_premium(
             bot,
             Var.LOG_CHAT,
-            f"AyiinUbot {ayiin_ver}",
+            f"HyperUbot {hyper_ver}",
             cq.message,
         )
         if HOSTED_ON == "Heroku":
@@ -391,7 +391,7 @@ async def added_to_group_msg(bot, cq):
             if not dotenv.get_key(path, vars):
                 dotenv.set_key(path, vars, string_session)
                 logs.info(f"Berhasil Menambahkan {vars}")
-                os.execvp(sys.executable, [sys.executable, "-m", "pyAyiin"])
+                os.execvp(sys.executable, [sys.executable, "-m", "pyHyper"])
             else:
                 pass
     except Exception as e:
@@ -408,10 +408,10 @@ async def added_to_group_msg(bot, cq):
             show_alert=True,
         )
     try:
-        string_session = await yins.generate_premium(
+        string_session = await ling.generate_premium(
             bot,
             Var.LOG_CHAT,
-            f"AyiinUbot {ayiin_ver}",
+            f"HyperUbot {hyper_ver}",
             cq.message,
         )
         if HOSTED_ON == "Heroku":
@@ -435,7 +435,7 @@ async def added_to_group_msg(bot, cq):
             if not dotenv.get_key(path, vars):
                 dotenv.set_key(path, vars, string_session)
                 logs.info(f"Berhasil Menambahkan {vars}")
-                os.execvp(sys.executable, [sys.executable, "-m", "pyAyiin"])
+                os.execvp(sys.executable, [sys.executable, "-m", "pyHyper"])
             else:
                 pass
     except Exception as e:
