@@ -1,9 +1,9 @@
 {
-    "name": "⋆ Ayiin Ubot ⋆",
-    "description": "[AyiinUbot] Userbot Hanya Untuk Bersenang - Senang",
-    "logo": "https://telegra.ph/file/c6a0aef41355af5a018c6.jpg",
-    "keywords": ["telegram", "userbot", "AyiinUbot", "pyrogram", "modular", "python"],
-    "repository": "https://github.com/AyiinXd/AyiinUbot",
+    "name": "⋆ Hyper Ubot ⋆",
+    "description": "[HyperUbot] Userbot Hanya Untuk Bersenang - Senang",
+    "logo": "https://telegra.ph/file/60ea7dce881484e2066c2.jpg",
+    "keywords": ["telegram", "userbot", "HyperUbot", "pyrogram", "modular", "python"],
+    "repository": "https://github.com/Ling-ex/AyiinUbot",
     "stack": "heroku-22",
     "env": {
       "API_ID": {
