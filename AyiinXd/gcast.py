@@ -13,16 +13,17 @@ from fipper import Client, enums
 from fipper.errors import FloodWait
 from fipper.types import Message
 
-from pyAyiin import Ayiin, CMD_HELP, DEVS
-from pyAyiin.pyrogram import eor
+from pyHyper import Hyper, CMD_HELP, DEVS
+from pyHyper.pyrogram import eor
 
-from . import yins
+from . import ling
 
 
 GCAST_BLACKLIST = [
     -1001675396283,  # AyiinChat
     -1001473548283,  # SharingUserbot
     -1001433238829,  # TedeSupport
+    -1001883961446,  # HyperSupport
     -1001476936696,  # AnosSupport
     -1001327032795,  # UltroidSupport
     -1001294181499,  # UserBotIndo
@@ -48,10 +49,10 @@ GCAST_BLACKLIST = [
 ]
 
 
-@Ayiin(["fgcast", "fw_cast"])
+@Hyper(["fgcast", "fw_cast"])
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message:
-        AyiinXD = await message.reply("<code>Started global broadcast...</code>")
+        HyperEX = await message.reply("<code>Started global broadcast...</code>")
     else:
         return await message.edit_text("<b>Berikan Sebuah Pesan atau Reply</b>")
     x = message.reply_to_message.id
@@ -77,15 +78,15 @@ async def gcast_cmd(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await AyiinXD.edit_text(
+    await HyperEX.edit_text(
         f"<b>Berhasil Menyebarkan Gosip Terusan...\n\nBerhasil Ke</b> <code>{done}</code> <b>Grup\nGagal Ke</b> <code>{error}</code> <b>Grup</b>"
     )
 
 
-@Ayiin(["gcast", "broadcast"])
+@Hyper(["gcast", "broadcast"])
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message:
-        AyiinXD = await eor(message, "<code>Started global broadcast...</code>")
+        HyperEX = await eor(message, "<code>Started global broadcast...</code>")
     else:
         return await message.edit_text("<b>Balas Ke Pesan Untuk Menyebarkan Gosipan Anda</b>")
     x = message.reply_to_message.id
@@ -111,15 +112,15 @@ async def gcast_cmd(client: Client, message: Message):
                     done += 1
                 except BaseException:
                     error += 1
-    await AyiinXD.edit_text(
+    await HyperEX.edit_text(
         f"<b>Status Penyebaran Gosip...\n\nBerhasil Ke</b> <code>{done}</code> <b>Grup\nGagal Ke</b> <code>{error}</code> <b>Grup</b>"
     )
 
 
-@Ayiin(["gucast"])
+@Hyper(["gucast"])
 async def gucast_cmd(client: Client, message: Message):
-    if message.reply_to_message or yins.get_cmd(message):
-        XD = await eor(message, "<code>Started global broadcast...</code>")
+    if message.reply_to_message or ling.get_cmd(message):
+        EX = await eor(message, "<code>Started global broadcast...</code>")
     else:
         return await message.edit_text("<b>Berikan Sebuah Pesan atau Reply</b>")
     done = 0
@@ -128,21 +129,21 @@ async def gucast_cmd(client: Client, message: Message):
         if dialog.chat.type == enums.ChatType.PRIVATE and not dialog.chat.is_verified:
             if message.reply_to_message:
                 msg = message.reply_to_message
-            elif yins.get_cmd:
-                msg = yins.get_cmd(message)
+            elif ling.get_cmd:
+                msg = ling.get_cmd(message)
             chat = dialog.chat.id
             if chat not in DEVS:
                 try:
                     if message.reply_to_message:
                         await msg.copy(chat)
-                    elif yins.get_cmd:
+                    elif ling.get_cmd:
                         await client.send_message(chat, msg)
                     done += 1
                     await asyncio.sleep(0.3)
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await XD.edit_text(
+    await EX.edit_text(
         f"<b>Berhasil Mengirim Pesan Ke</b> <code>{done}</code> <b>chat, Gagal Mengirim Pesan Ke</b> <code>{error}</code> <b>chat</b>"
     )
 
